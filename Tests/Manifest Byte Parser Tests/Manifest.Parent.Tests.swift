@@ -98,6 +98,11 @@ extension Manifest.Parent.Test.Scan {
     }
 
     @Test
+    func `Directive without a parent value returns nil`() {
+        #expect(Manifest.Parent.scan(in: "// parent:   \n") == nil)
+    }
+
+    @Test
     func `First valid directive wins when multiple are present`() {
         let content = """
             // parent: https://first.example.com/Lint.swift
