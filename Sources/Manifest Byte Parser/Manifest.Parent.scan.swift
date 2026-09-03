@@ -1,6 +1,8 @@
 public import Manifest
 internal import ASCII
-internal import Byte_Parser
+internal import Byte
+internal import Cursor
+public import Cursor_Standard_Library_Integration
 internal import Byte_Standard_Library_Integration
 internal import Iterator_Parser
 
@@ -39,7 +41,7 @@ extension Manifest.Parent {
     private static func parse(
         _ line: Swift.ArraySlice<Swift.UInt8>
     ) -> [Swift.UInt8]? {
-        var input = Byte.Input(Swift.Array(line))
+        var input = Array(line)[...]
 
         while let first = input.first,
             first.underlying == ASCII.SPACE.sp
@@ -51,8 +53,8 @@ extension Manifest.Parent {
             } catch {}
         }
 
-        do throws([Byte].Parser<Byte.Input>.Failure) {
-            try ([Byte].Parser<Byte.Input>("// parent:")).parse(&input)
+        do throws([Byte].Parser<ArraySlice<Byte>>.Failure) {
+            try ([Byte].Parser<ArraySlice<Byte>>("// parent:")).parse(&input)
         } catch {
             return nil
         }
