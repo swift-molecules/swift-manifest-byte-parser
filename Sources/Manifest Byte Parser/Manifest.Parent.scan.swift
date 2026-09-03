@@ -1,6 +1,8 @@
 public import Manifest
 internal import ASCII
 internal import Byte_Parser
+internal import Byte_Standard_Library_Integration
+internal import Iterator_Parser
 
 extension Manifest.Parent {
 
@@ -49,8 +51,8 @@ extension Manifest.Parent {
             } catch {}
         }
 
-        do throws(Byte.Literal.Parser<Byte.Input>.Failure) {
-            try (Byte.Literal.Parser<Byte.Input>("// parent:")).parse(&input)
+        do throws([Byte].Parser<Byte.Input>.Failure) {
+            try ([Byte].Parser<Byte.Input>("// parent:")).parse(&input)
         } catch {
             return nil
         }

@@ -30,6 +30,8 @@ let package = Package(
             url: "https://github.com/swift-molecules/swift-byte-parser.git",
             branch: "main"
         ),
+        .package(url: "https://github.com/swift-atoms/swift-byte.git", branch: "main"),
+        .package(url: "https://github.com/swift-molecules/swift-iterator-parser.git", branch: "main"),
     ],
     targets: [
         .target(
@@ -38,12 +40,13 @@ let package = Package(
                 .product(name: "Manifest", package: "swift-manifest"),
                 .product(name: "ASCII", package: "swift-ascii"),
                 .product(name: "Byte Parser", package: "swift-byte-parser"),
+                .product(name: "Byte Standard Library Integration", package: "swift-byte"),
+                .product(name: "Iterator Parser", package: "swift-iterator-parser"),
             ]
         ),
         .testTarget(
             name: "Manifest Byte Parser Tests",
             dependencies: [
-                "Manifest Byte Parser",
                 .product(name: "Manifest", package: "swift-manifest"),
             ]
         ),
